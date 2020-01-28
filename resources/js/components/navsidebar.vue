@@ -26,8 +26,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="/img/theme/team-1-800x800.jpg
-">
+                <img alt="Image placeholder" src="/img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -94,14 +93,24 @@
           <a class="nav-link active " href="#/"> <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
-          <li class="nav-item">
+					<li class="nav-item">
             <a class="nav-link " href="#">
-              <i class="ni ni-planet text-blue"></i> Icons
+              <i class="fa fa-list-alt text-blue"></i> Category
+            </a>
+          </li>
+					<li class="nav-item">
+            <a class="nav-link " href="#">
+              <i class="fa fa-list text-blue"></i> Listings
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-              <i class="ni ni-pin-3 text-orange"></i> Maps
+              <i class="ni ni-pin-3 text-orange"></i> Locations
+            </a>
+          </li>
+					<li class="nav-item">
+            <a class="nav-link " href="#">
+              <i class="fa fa-building text-orange"></i> Companies
             </a>
           </li>
           <li class="nav-item">
@@ -109,19 +118,14 @@
               <i class="fa fa-users text-yellow"></i> Users
             </a>
           </li>
+					<li class="nav-item">
+            <a class="nav-link " href="#/pages">
+              <i class="fa fa-file text-blue"></i> Pages
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-key-25 text-info"></i> Login
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-circle-08 text-pink"></i> Register
+              <i class="fa fa-copy text-red"></i> Posts
             </a>
           </li>
         </ul>
@@ -132,18 +136,8 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
+            <a class="nav-link" href="#">
               <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
             </a>
           </li>
         </ul>

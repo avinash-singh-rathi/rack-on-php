@@ -103,9 +103,7 @@ export default {
     }
   },
   computed:{
-    user(){
-      return this.pagedata.data;
-    }
+		//
   },
   components:{
     Pagination
@@ -115,8 +113,8 @@ export default {
   },
   created(){
     //
-    this.getUsers();
-    this.getUser();
+    //this.getUsers();
+    //this.getUser();
   }
 }
 </script>

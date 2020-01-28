@@ -9,7 +9,15 @@ PHP7.2+, Mysql, Linux, Apache
 
 Credits
 ==============
+[Laravel](https://laravel.com/)
+[Vue](https://vuejs.org/)
+[Argon Dashboard](https://www.creative-tim.com)
 [Bouncer](https://github.com/JosephSilber/bouncer) - For the ACL
+[Vue Editor](https://github.com/davidroyer/vue2-editor)
+
+Sponsors
+==============
+Support us at [Patreon](https://www.patreon.com/bePatron?u=29894458)
 
 Notice
 =============

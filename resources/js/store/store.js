@@ -10,9 +10,9 @@ export const store = new Vuex.Store({
     strict: true,
     state: {
         loading:true,
-        
+        pages:[],
         configs:{
-            apiUrl:'/api/'
+            apiUrl:'/api/admin/'
         }
     },
     getters,

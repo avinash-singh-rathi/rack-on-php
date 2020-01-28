@@ -14,6 +14,16 @@ let routes = [
         name: 'users',
         component: require('../pages/users.vue').default
     },
+    {
+        path: '/pages',
+        name: 'pages',
+        component: require('../pages/Pages/pages.vue').default
+    },
+    {
+        path: '/pages/add',
+        name: 'addpage',
+        component: require('../pages/Pages/addPage.vue').default
+    },
 ];
 
 export const router = new VueRouter({
