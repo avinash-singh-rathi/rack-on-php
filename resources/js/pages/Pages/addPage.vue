@@ -47,7 +47,7 @@
                            <div class="col-md-12">
                              <div class="form-group">
                                <label class="form-control-label" for="pagecontent">Content</label>
-                               <textarea id="pagecontent" class="form-control" placeholder="Enter your content here"></textarea>
+                               <vue-editor id="pagecontent" v-model="content"></vue-editor>
                              </div>
                            </div>
                         </div>
@@ -93,9 +93,11 @@
 import { mapActions, mapGetters } from "vuex";
 import Pagination from '../../components/pagination';
 import FooterContainer from '../../components/footerContainer';
+import { VueEditor, Quill } from "vue2-editor";
 export default {
 	data(){
 		return {
+      content:'',
 			//pagedata:{},
 		}
 	},
@@ -107,6 +109,7 @@ export default {
 	},
 	components:{
 		Pagination,
+    VueEditor,
     'footer-container':FooterContainer,
 	},
 	methods:{

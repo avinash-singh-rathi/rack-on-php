@@ -1,6 +1,5 @@
 Rack on PHP <img src="https://github.com/avinash-singh-rathi/rack-on-php/blob/master/ROP-Logo.png" alt="Rack on PHP">
 ===========
-
 Rack on PHP is built on Laravel, Vue, Bootstrap. It is the open-source listing portal.
 
 Requirements
