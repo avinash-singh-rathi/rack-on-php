@@ -10,7 +10,9 @@ window.Vue = require('vue');
 
 // VeeValidate
 import VeeValidate from 'vee-validate';
+import VeeValidateLaravel from 'vee-validate-laravel';
 Vue.use(VeeValidate);
+Vue.use(VeeValidateLaravel);
 
 // VueResource
 var VueResource = require('vue-resource');

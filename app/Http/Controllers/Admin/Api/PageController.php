@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Page;
 use Illuminate\Http\Request;
 use App\Http\Resources\Admin\Page\{PageResource,PageCollection};
+use App\Http\Requests\Admin\Api\Page\PageRequest;
 
 class PageController extends Controller
 {
@@ -25,9 +26,9 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //Create the Page
     }
 
     /**
@@ -36,9 +37,17 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PageRequest $request)
     {
         //
+        $page=new Page();
+        $page->title = $request->title;
+        $page->slug = $request->slug;
+        $page->content = $request->content;
+        $page->metatitle = $request->metatitle;
+        $page->metadescription = $request->metadescription;
+        $page->save();
+        return new PageResource($page);
     }
 
     /**

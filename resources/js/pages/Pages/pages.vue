@@ -21,21 +21,14 @@
                 <tbody>
                   <tr v-for="page in pagesdata">
                     <th scope="row">
-                      <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="/img/theme/bootstrap.jpg">
-                        </a>
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">{{ page.firstname }} {{ page.lastname }}</span>
-                        </div>
-                      </div>
+                      {{page.title}}
                     </th>
                     <td>
-                      {{page.email}}
+                      {{page.slug}}
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> pending
+                        <i :class="{'bg-warning':!page.status,'bg-success':page.status}"></i> {{ page.status | checkStatus}}
                       </span>
                     </td>
                     <td>
@@ -85,6 +78,12 @@ export default {
 	},
 	components:{
 		Pagination,
+	},
+	filters: {
+	  checkStatus: function (value) {
+	    if (!value) return 'Draft'
+	    return 'Published'
+	  }
 	},
 	methods:{
     ...mapActions(["getPages"]),
