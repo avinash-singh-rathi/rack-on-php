@@ -95,7 +95,6 @@
 </template>
 
 <script>
-import Pagination from './pagination';
 export default {
   data(){
     return {
@@ -106,7 +105,7 @@ export default {
 		//
   },
   components:{
-    Pagination
+    //
   },
   methods:{
 

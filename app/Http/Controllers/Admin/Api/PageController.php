@@ -46,6 +46,7 @@ class PageController extends Controller
         $page->content = $request->content;
         $page->metatitle = $request->metatitle;
         $page->metadescription = $request->metadescription;
+        $page->status = $request->status;
         $page->save();
         return new PageResource($page);
     }

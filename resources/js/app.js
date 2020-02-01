@@ -18,6 +18,10 @@ Vue.use(VeeValidateLaravel);
 var VueResource = require('vue-resource');
 Vue.use(VueResource);
 
+//SweetAlert2
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
+
 import { store } from './store/store'
 
 // VueRouter

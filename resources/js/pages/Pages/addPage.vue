@@ -162,8 +162,15 @@ export default {
         if (valid) {
             this.$http.post(this.apiUrl+'pages',this.page).then(
               function (response) {
-                  console.log(response);
                   this.loading=false;
+                  this.page={};
+                  this.page.status=1;
+                  this.$swal.fire(
+                      'Successful!',
+                      'Page created successfully!',
+                      'success'
+                  );
+                  this.$validator.errors.clear();
               }, function (error) {
                 this.loading=false;
                 this.$setLaravelValidationErrorsFromResponse(error.data);

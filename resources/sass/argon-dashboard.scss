@@ -88,6 +88,7 @@ $fa-font-path:"/fonts/fontawesome/webfonts";
 
 //import nucleo font
 @import "nucleo/css/nucleo.css";
+@import '~sweetalert2/dist/sweetalert2.min.css';
 
 .modal-mask {
   position: fixed;
