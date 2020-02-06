@@ -10,8 +10,8 @@ export default {
                             console.log(error);
                         });
     },
-    getPages({ commit, getters }){
-            Vue.http.get(getters.apiUrl+'pages').then(
+    GetPages({ commit, getters },value=''){
+            Vue.http.get(getters.apiUrl+'pages'+value).then(
                         function (response) {
                             console.log(response);
                             commit('setPages', response.data)

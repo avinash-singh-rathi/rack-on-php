@@ -17,7 +17,7 @@ class PageController extends Controller
      */
     public function index(Request $request)
     {
-      if ($request->has('search')) {
+      if ($request->has('search') AND !empty($request->input('search'))) {
         //
         $search = $request->search;
         return new PageCollection(Page::where('title','like',"%$search%")->paginate(10));

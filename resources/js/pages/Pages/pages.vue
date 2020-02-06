@@ -14,7 +14,7 @@
 											<form @submit.prevent="search()" class="form-inline" method="post">
 												<div class="form-group mx-sm-3 mb-2">
 													<label for="searchinput" class="sr-only">Search Term</label>
-													<input type="text" class="form-control" id="searchinput" placeholder="What are you looking?">
+													<input type="text" class="form-control" v-model="searchinput" id="searchinput" placeholder="What are you looking?">
 												</div>
 												<button type="submit" class="btn btn-primary mb-2 rounded-0">Search</button>
 											</form>
@@ -23,7 +23,7 @@
 								</div>
 
 	            </div>
-	            <div class="table-responsive">
+	            <div v-if="pagesdata != undefined && pagesdata.length > 0" class="table-responsive">
 	              <table class="table align-items-center table-flush">
 	                <thead class="thead-light">
 	                  <tr>
@@ -61,8 +61,7 @@
 	                        </a>
 	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 														<router-link class="dropdown-item" :to="{ name: 'EditPage', params: { id: page.id }}">Edit</router-link>
-														<a class="dropdown-item" href="#">Edit</a>
-	                          <a class="dropdown-item" href="#">View on Front</a>
+														<a class="dropdown-item" href="#">View on Front</a>
 	                          <a class="dropdown-item" href="#">Delete</a>
 	                        </div>
 	                      </div>
@@ -72,7 +71,15 @@
 	              </table>
 	            </div>
 
-	          	<Pagination :pagedata="pages"></Pagination>
+							<div v-else class="card-body">
+								<div class="row">
+									<div class="">
+										You have not created any<span> such</span> page. Create <router-link :to="{ name: 'addpage'}">One</router-link>
+									</div>
+								</div>
+							</div>
+
+	          	<Pagination :pagedata="pages" @clicked="GetPages"></Pagination>
 
 	          </div>
 	        </div>
@@ -89,6 +96,7 @@ export default {
 	data(){
 		return {
 			//pagedata:{},
+			searchinput:'',
 		}
 	},
 	computed:{
@@ -108,13 +116,15 @@ export default {
 	  }
 	},
 	methods:{
-    ...mapActions(["getPages"]),
+    ...mapActions(["GetPages"]),
 		search(e){
 			//Action will go here
+			this.GetPages('?search='+this.searchinput);
+
 		}
 	},
 	created(){
-    this.getPages();
+    this.GetPages();
 	}
 }
 </script>

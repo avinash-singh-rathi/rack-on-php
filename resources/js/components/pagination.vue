@@ -3,20 +3,20 @@
         <nav aria-label="...">
                 <ul class="pagination justify-content-end mb-0">
                   <li class="page-item" :class="{disabled: isPrevious == false}">
-                    <a class="page-link" href="#" tabindex="-1">
+                    <a class="page-link" @click.prevent="GoToPage(FirstPageLink)" href="#" tabindex="-1">
                       <i class="fas fa-angle-left"></i>
                       <span class="sr-only">Previous</span>
                     </a>
                   </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
+                  <li v-for="link in PageNumbers" class="page-item" :class="{active:link.number == CurrentPage}">
+                    <a class="page-link" @click.prevent="GoToPage(link.url,link.number)" href="#">{{link.number}}</a>
                   </li>
-                  <li class="page-item">
+                  <!-- <li class="page-item">
                     <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  </li> -->
+                  <!-- <li class="page-item"><a class="page-link" href="#">3</a></li> -->
                   <li class="page-item" :class="{disabled: isNext == false}">
-                    <a class="page-link" href="#">
+                    <a class="page-link" @click.prevent="GoToPage(LastPageLink)" href="#">
                       <i class="fas fa-angle-right"></i>
                       <span class="sr-only">Next</span>
                     </a>
@@ -33,14 +33,32 @@
 		    return {
 		      current:[]
 		    }
-		},	
+		},
 		methods:{
+			ChangeUriParam(url,param,value){
+				let newurl = new URL(url);
+				newurl.searchParams.set(param, value);
+				return newurl.toString();
+			},
 
+			//Go To Pages
+			GoToPage(url,page=null){
+				if(page!=null && page === this.CurrentPage){
+					return;
+				}
+				let uri=null;
+				let split = url.split("?")
+				if(split.length == 2){
+					uri = '?'+split[1];
+				}
+				//Next action
+				this.$emit('clicked', uri);
+			}
 		},
 		computed:{
 			//check for pagination to show or not
 			isPagination(){
-				if(this.pagedata.meta != undefined){
+				if(this.pagedata.meta != undefined && (this.pagedata.links.prev != null || this.pagedata.links.next != null)){
 					return true;
 				}
 				return false;
@@ -58,9 +76,36 @@
 					return true;
 				}
 				return false;
-			}
-
-			
+			},
+			CurrentPage(){
+				return this.pagedata.meta.current_page;
+			},
+			lastPage(){
+				return this.pagedata.meta.last_page;
+			},
+			FirstPageLink(){
+				return this.pagedata.links.first;
+			},
+			LastPageLink(){
+				return this.pagedata.links.last;
+			},
+			PageNumbers(){
+				let current=this.CurrentPage;
+				let links = [];
+				if(current != undefined && current!= null){
+					if(current !=1){
+							links.push({'number':current-1,'url':this.ChangeUriParam(this.pagedata.links.first,'page',current -1)});
+					}
+							links.push({'number':current,'url':this.ChangeUriParam(this.pagedata.links.first,'page',current)});
+					if( this.lastPage > current){
+							links.push({'number':current+1,'url':this.ChangeUriParam(this.pagedata.links.first,'page',current + 1)});
+					}
+				}
+				return links;
+				// var text = 'http://localhost/mysite/includes/phpThumb.php?src=http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_1_large.jpg&w=592&aoe=1&q=100';
+				// var newSrc = 'www.google.com';
+				// var newText = text.replace(/(src=).*?(&)/,'$1' + newSrc + '$2');
+			},
 
 		}
 	}
