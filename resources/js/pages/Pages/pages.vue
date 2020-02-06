@@ -11,7 +11,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="float-right">
-											<form class="form-inline" method="post">
+											<form @submit.prevent="search()" class="form-inline" method="post">
 												<div class="form-group mx-sm-3 mb-2">
 													<label for="searchinput" class="sr-only">Search Term</label>
 													<input type="text" class="form-control" id="searchinput" placeholder="What are you looking?">
@@ -60,7 +60,8 @@
 	                          <i class="fas fa-ellipsis-v"></i>
 	                        </a>
 	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-	                          <a class="dropdown-item" href="#">Edit</a>
+														<router-link class="dropdown-item" :to="{ name: 'EditPage', params: { id: page.id }}">Edit</router-link>
+														<a class="dropdown-item" href="#">Edit</a>
 	                          <a class="dropdown-item" href="#">View on Front</a>
 	                          <a class="dropdown-item" href="#">Delete</a>
 	                        </div>
@@ -108,6 +109,9 @@ export default {
 	},
 	methods:{
     ...mapActions(["getPages"]),
+		search(e){
+			//Action will go here
+		}
 	},
 	created(){
     this.getPages();

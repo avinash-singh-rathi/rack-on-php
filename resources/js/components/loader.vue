@@ -6,7 +6,7 @@
           <div class="modal-dialog" role="document">
             <div class="">
               <div class="">
-                <rotate-square2></rotate-square2>
+                <rotate-square2 class="center"></rotate-square2>
               </div>
             </div>
           </div>

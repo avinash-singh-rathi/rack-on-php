@@ -15,8 +15,13 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      if ($request->has('search')) {
+        //
+        $search = $request->search;
+        return new PageCollection(Page::where('title','like',"%$search%")->paginate(10));
+      }
         //Return the pages for the Admin
         return  new PageCollection(Page::paginate(10));
     }
@@ -60,6 +65,7 @@ class PageController extends Controller
     public function show(Page $page)
     {
         //
+        return new PageResource($page);
     }
 
     /**
@@ -80,9 +86,17 @@ class PageController extends Controller
      * @param  \App\Model\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(PageRequest $request, Page $page)
     {
-        //
+        //Update the page
+        $page->title = $request->title;
+        $page->slug = $request->slug;
+        $page->content = $request->content;
+        $page->metatitle = $request->metatitle;
+        $page->metadescription = $request->metadescription;
+        $page->status = $request->status;
+        $page->save();
+        return new PageResource($page);
     }
 
     /**
@@ -94,5 +108,6 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         //
+
     }
 }

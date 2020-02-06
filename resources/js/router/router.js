@@ -16,14 +16,38 @@ let routes = [
     },
     {
         path: '/pages',
-        name: 'pages',
-        component: require('../pages/Pages/pages.vue').default
+        //name: 'pages',
+        component: { render: h => h('router-view') },
+        //component: require('../pages/Pages/pages.vue').default,
+        children:[
+          {
+            path: '',
+            name: 'pages',
+            component: require('../pages/Pages/pages.vue').default,
+          },
+          {
+              path: 'add',
+              name: 'addpage',
+              component: require('../pages/Pages/addPage.vue').default
+          },
+          {
+              path: 'edit/:id',
+              name: 'EditPage',
+              component: require('../pages/Pages/EditPage.vue').default
+          },
+        ]
     },
-    {
-        path: '/pages/add',
-        name: 'addpage',
-        component: require('../pages/Pages/addPage.vue').default
-    },
+    // {
+    //     path: '/pages/add',
+    //     name: 'addpage',
+    //     component: require('../pages/Pages/addPage.vue').default
+    // },
+    // {
+    //     path: '/pages/edit',
+    //     name: 'addpage',
+    //     component: require('../pages/Pages/addPage.vue').default
+    // },
+
 ];
 
 export const router = new VueRouter({

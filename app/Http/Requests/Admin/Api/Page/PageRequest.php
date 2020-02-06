@@ -37,7 +37,7 @@ class PageRequest extends FormRequest
               //
               'id' => 'required|numeric',
               'title' => 'required|max:255',
-              'slug' => 'required|alpha_dash|max:50|unique:pages,slug,id',
+              'slug' => 'required|alpha_dash|max:50|unique:pages,slug,'.$this->page->id,
               'status' => 'required|boolean'
           ];
         }
