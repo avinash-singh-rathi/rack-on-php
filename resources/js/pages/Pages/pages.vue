@@ -62,7 +62,7 @@
 	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 														<router-link class="dropdown-item" :to="{ name: 'EditPage', params: { id: page.id }}">Edit</router-link>
 														<a class="dropdown-item" href="#">View on Front</a>
-	                          <a class="dropdown-item" href="#">Delete</a>
+	                          <a class="dropdown-item" @click.prevent="DeleteIt(page.id)" href="#">Delete</a>
 	                        </div>
 	                      </div>
 	                    </td>
@@ -116,12 +116,40 @@ export default {
 	  }
 	},
 	methods:{
-    ...mapActions(["GetPages"]),
+    ...mapActions(["GetPages","DeletePage"]),
 		search(e){
 			//Action will go here
 			this.GetPages('?search='+this.searchinput);
+		},
+		async DeleteIt(id){
+				this.$swal.fire({
+				  title: 'Are you sure?',
+				  text: "You won't be able to revert this!",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  //confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes, delete it!'
+				}).then((result) => {
+					console.log(result);
+				  if (result.value) {
+						this.DeletePage(id).then(response =>{
+							this.$swal.fire(
+								'Deleted!',
+								'Your file has been deleted.',
+								'success'
+							);
+						},error => {
+							this.$swal.fire(
+					      'Unsuccessful!',
+					      'Unable to delete this page.',
+					      'error'
+					    )
+						});
+				  }
+				})
+		},
 
-		}
 	},
 	created(){
     this.GetPages();

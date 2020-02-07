@@ -108,6 +108,8 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         //
-
+        $page->delete();
+        return response()->json([
+        'message' => 'Page deleted successfully'], 200);
     }
 }
