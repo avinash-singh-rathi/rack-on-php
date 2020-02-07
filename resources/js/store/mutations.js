@@ -6,6 +6,9 @@ export default {
     setPages(state,data){
       state.pages=data;
     },
+    SetPosts(state,data){
+      state.posts=data;
+    },
     RemovePage(state,id){
       state.pages.data.forEach((obj1,key) => {
           if(obj1.id == id){

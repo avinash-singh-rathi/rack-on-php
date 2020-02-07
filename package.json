@@ -27,6 +27,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "laravel-file-manager": "^2.4.11",
         "quill-image-drop-module": "^1.0.3",
         "quill-image-resize-module": "^3.0.0",
         "vee-validate": "^2.2.13",

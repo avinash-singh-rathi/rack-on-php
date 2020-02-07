@@ -37,6 +37,29 @@ let routes = [
           },
         ]
     },
+    {
+        path: '/posts',
+        //name: 'pages',
+        component: { render: h => h('router-view') },
+        //component: require('../pages/Pages/pages.vue').default,
+        children:[
+          {
+            path: '',
+            name: 'posts',
+            component: require('../pages/Posts/Index.vue').default,
+          },
+          {
+              path: 'add',
+              name: 'AddPost',
+              component: require('../pages/Posts/Add.vue').default
+          },
+          {
+              path: 'edit/:id',
+              name: 'EditPost',
+              component: require('../pages/Posts/Edit.vue').default
+          },
+        ]
+    },
     // {
     //     path: '/pages/add',
     //     name: 'addpage',

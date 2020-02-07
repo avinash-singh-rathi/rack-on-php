@@ -21,5 +21,6 @@ Route::middleware('auth:api')->name('api.admin.')->namespace('Admin\Api')->group
   Route::prefix('admin')->group(function () {
     Route::get('/users', 'UserController@list')->name('userlist');
     Route::apiResource('pages','PageController');
+    Route::apiResource('posts','PostController');
   });
 });

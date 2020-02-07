@@ -4,7 +4,10 @@ Rack on PHP is built on Laravel, Vue, Bootstrap. It is the open-source listing p
 
 Requirements
 ===============
-PHP7.2+, Mysql, Linux, Apache
+* PHP7.2+
+* Mysql
+* Composer
+* NPM or Yarn
 
 Credits
 ==============
@@ -13,6 +16,7 @@ Credits
 * [Argon Dashboard](https://www.creative-tim.com)
 * [Bouncer](https://github.com/JosephSilber/bouncer) - For the ACL
 * [Vue Editor](https://github.com/davidroyer/vue2-editor)
+* [Laravel File Manager](https://github.com/alexusmai/vue-laravel-file-manager)
 
 Sponsors
 ==============

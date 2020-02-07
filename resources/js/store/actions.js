@@ -34,6 +34,19 @@ export default {
               reject(error);
           });
       });
-    }
+    },
+
+    //Function to get All posts and search query for posts too
+    GetPosts({ commit, getters },value=''){
+        return new Promise((resolve, reject) => {
+            Vue.http.get(getters.apiUrl+'posts'+value).then(
+                        function (response) {
+                            commit('SetPosts', response.data)
+                            resolve(response);
+                        }, function (error) {
+                            reject(error);
+                        });
+            });
+    },
 
 };
