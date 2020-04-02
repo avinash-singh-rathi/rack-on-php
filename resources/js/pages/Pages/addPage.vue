@@ -171,6 +171,7 @@ export default {
                       'success'
                   );
                   this.$validator.errors.clear();
+                  this.submitted=false;
               }, function (error) {
                 this.loading=false;
                 this.$setLaravelValidationErrorsFromResponse(error.data);

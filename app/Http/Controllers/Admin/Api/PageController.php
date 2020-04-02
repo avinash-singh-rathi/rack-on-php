@@ -20,10 +20,10 @@ class PageController extends Controller
       if ($request->has('search') AND !empty($request->input('search'))) {
         //
         $search = $request->search;
-        return new PageCollection(Page::where('title','like',"%$search%")->paginate(10));
+        return new PageCollection(Page::where('title','like',"%$search%")->paginate(1));
       }
         //Return the pages for the Admin
-        return  new PageCollection(Page::paginate(10));
+        return  new PageCollection(Page::paginate(1));
     }
 
     /**

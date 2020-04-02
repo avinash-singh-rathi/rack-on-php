@@ -7,7 +7,7 @@
                 <h3 class="mb-0">Posts</h3>
                 <div class="row">
                   <div class="col-md-6">
-                    <router-link :class="'btn btn-primary rounded-0'" :to="{name:'addpage'}"><i class="fa fa-plus"></i> Add Page</router-link>
+                    <router-link :class="'btn btn-primary rounded-0'" :to="{name:'AddPost'}"><i class="fa fa-plus"></i> Add Post</router-link>
                   </div>
                   <div class="col-md-6">
                     <div class="float-right">
