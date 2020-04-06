@@ -11,10 +11,10 @@
 									</div>
 									<div class="col-md-6">
 										<div class="float-right">
-											<form @submit.prevent="search()" class="form-inline" method="post">
+											<form @submit.prevent="GoPages()" class="form-inline" method="post">
 												<div class="form-group mx-sm-3 mb-2">
 													<label for="searchinput" class="sr-only">Search Term</label>
-													<input type="text" class="form-control" v-model="searchinput" id="searchinput" placeholder="What are you looking?">
+													<input type="text" class="form-control" v-model="search" id="search" placeholder="What are you looking?">
 												</div>
 												<button type="submit" class="btn btn-primary mb-2 rounded-0">Search</button>
 											</form>
@@ -79,7 +79,7 @@
 								</div>
 							</div>
 
-	          	<Pagination :pagedata="pages" @clicked="GetPages"></Pagination>
+	          	<Pagination :pagedata="pages" @clicked="GoPages"></Pagination>
 
 	          </div>
 	        </div>
@@ -96,7 +96,7 @@ export default {
 	data(){
 		return {
 			//pagedata:{},
-			searchinput:'',
+			search:'',
 		}
 	},
 	computed:{
@@ -117,9 +117,9 @@ export default {
 	},
 	methods:{
     ...mapActions(["GetPages","DeletePage"]),
-		search(e){
+		GoPages(pagenumber=null){
 			//Action will go here
-			this.GetPages('?search='+this.searchinput);
+			this.GetPages({search:this.search,page:pagenumber});
 		},
 		async DeleteIt(id){
 				this.$swal.fire({

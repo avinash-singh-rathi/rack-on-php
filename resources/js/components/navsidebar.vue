@@ -103,6 +103,9 @@
               <i class="fa fa-list text-blue"></i> Listings
             </a>
           </li>
+					<li class="nav-item">
+						<router-link class="nav-link" :to="{ name: 'filemanager' }"><i class="fa fa-folder-open text-blue"></i> File Manager</router-link>
+          </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
               <i class="ni ni-pin-3 text-orange"></i> Locations

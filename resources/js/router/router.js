@@ -15,6 +15,11 @@ let routes = [
         component: require('../pages/users.vue').default
     },
     {
+        path: '/filemanager',
+        name: 'filemanager',
+        component: require('../pages/FileManager/Index.vue').default
+    },
+    {
         path: '/pages',
         //name: 'pages',
         component: { render: h => h('router-view') },

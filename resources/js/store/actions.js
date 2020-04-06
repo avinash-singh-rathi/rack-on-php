@@ -11,9 +11,9 @@ export default {
                         });
     },
     //Function to get All pages and search query for pages too
-    GetPages({ commit, getters },value=''){
+    GetPages({ commit, getters },data){
         return new Promise((resolve, reject) => {
-            Vue.http.get(getters.apiUrl+'pages'+value).then(
+            Vue.http.get(getters.apiUrl+'pages',{params: data}).then(
                         function (response) {
                             commit('setPages', response.data)
                             resolve(response);
@@ -37,9 +37,9 @@ export default {
     },
 
     //Function to get All posts and search query for posts too
-    GetPosts({ commit, getters },value=''){
+    GetPosts({ commit, getters },data){
         return new Promise((resolve, reject) => {
-            Vue.http.get(getters.apiUrl+'posts'+value).then(
+            Vue.http.get(getters.apiUrl+'posts',{params: data}).then(
                         function (response) {
                             commit('SetPosts', response.data)
                             resolve(response);

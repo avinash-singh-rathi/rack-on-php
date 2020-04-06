@@ -11,10 +11,10 @@
                   </div>
                   <div class="col-md-6">
                     <div class="float-right">
-                      <form @submit.prevent="search()" class="form-inline" method="post">
+                      <form @submit.prevent="GoPosts()" class="form-inline" method="post">
                         <div class="form-group mx-sm-3 mb-2">
                           <label for="searchinput" class="sr-only">Search Term</label>
-                          <input type="text" class="form-control" v-model="searchinput" id="searchinput" placeholder="What are you looking?">
+                          <input type="text" class="form-control" v-model="search" id="search" placeholder="What are you looking?">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2 rounded-0">Search</button>
                       </form>
@@ -74,12 +74,12 @@
               <div v-else class="card-body">
                 <div class="row">
                   <div class="">
-                    You have not created any<span> such</span> post. Create <router-link :to="{ name: 'addpage'}">One</router-link>
+                    You have not created any<span> such</span> post. Create <router-link :to="{ name: 'AddPost'}">One</router-link>
                   </div>
                 </div>
               </div>
 
-              <Pagination :pagedata="posts" @clicked="GetPosts"></Pagination>
+              <Pagination :pagedata="posts" @clicked="GoPosts"></Pagination>
 
             </div>
           </div>
@@ -97,7 +97,7 @@ export default {
   data(){
 		return {
 			//pagedata:{},
-			searchinput:'',
+			search:'',
 		}
 	},
   components:{
@@ -119,6 +119,9 @@ export default {
   methods:{
       //
       ...mapActions(["GetPosts"]),
+      GoPosts(pagenumber=null){
+        this.GetPosts({search:this.search,page:pagenumber});
+      }
   },
   created(){
     this.GetPosts();

@@ -46,13 +46,7 @@
 				if(page!=null && page === this.CurrentPage){
 					return;
 				}
-				let uri=null;
-				let split = url.split("?")
-				if(split.length == 2){
-					uri = '?'+split[1];
-				}
-				//Next action
-				this.$emit('clicked', uri);
+				this.$emit('clicked', page);
 			}
 		},
 		computed:{
