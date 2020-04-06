@@ -104,9 +104,6 @@
             </a>
           </li>
 					<li class="nav-item">
-						<router-link class="nav-link" :to="{ name: 'filemanager' }"><i class="fa fa-folder-open text-blue"></i> File Manager</router-link>
-          </li>
-          <li class="nav-item">
             <a class="nav-link " href="#">
               <i class="ni ni-pin-3 text-orange"></i> Locations
             </a>
@@ -117,19 +114,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#/users">
-              <i class="fa fa-users text-yellow"></i> Users
-            </a>
+						<router-link class="nav-link" :to="{ name: 'users' }"><i class="fa fa-users text-yellow"></i> Users</router-link>
           </li>
 					<li class="nav-item">
-            <a class="nav-link " href="#/pages">
-              <i class="fa fa-file text-blue"></i> Pages
-            </a>
+						<router-link class="nav-link" :to="{ name: 'pages'}"><i class="fa fa-file text-blue"></i> Pages</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#/posts">
-              <i class="fa fa-copy text-red"></i> Posts
-            </a>
+						<router-link class="nav-link" :to="{ name: 'posts'}"><i class="fa fa-copy text-red"></i> Posts</router-link>
+          </li>
+					<li class="nav-item">
+						<router-link class="nav-link" :to="{ name: 'filemanager' }"><i class="fa fa-folder-open text-blue"></i> File Manager</router-link>
           </li>
         </ul>
         <!-- Divider -->

@@ -50,7 +50,7 @@
                            <div class="col-md-12">
                              <div class="form-group">
                                <label class="form-control-label" for="pagecontent">Content</label>
-                               <vue-editor id="pagecontent" :customModules="customModulesForEditor" :editorOptions="editorSettings" v-model="page.content"></vue-editor>
+                                //use editor here
                              </div>
                            </div>
                         </div>
@@ -113,9 +113,6 @@
 import { mapActions, mapGetters } from "vuex";
 import Pagination from '../../components/pagination';
 import FooterContainer from '../../components/footerContainer';
-import { VueEditor, Quill } from "vue2-editor";
-import { ImageDrop } from 'quill-image-drop-module';
-import ImageResize from 'quill-image-resize-module';
 import loader from '../../components/loader';
 import CommonMixin from '../../mixins/common';
 
@@ -134,13 +131,6 @@ export default {
       },
       submitted:false,
       loading:false,
-      customModulesForEditor: [{ alias: "imageDrop", module: ImageDrop }, { alias: "imageResize", module: ImageResize }],
-      editorSettings: {
-          modules: {
-            imageDrop: true,
-            imageResize: {}
-          }
-      },
 			//pagedata:{},
 		}
 	},
@@ -149,7 +139,6 @@ export default {
 	},
 	components:{
 		Pagination,
-    VueEditor,
     'footer-container':FooterContainer,
     loader,
 	},
