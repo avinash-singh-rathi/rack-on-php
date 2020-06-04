@@ -27,7 +27,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@tinymce/tinymce-vue": "^3.2.2",
         "laravel-file-manager": "^2.4.11",
+        "tinymce": "^5.3.1",
         "vee-validate": "^2.2.13",
         "vee-validate-laravel": "^1.1.0",
         "vue-loading-spinner": "^1.0.11",

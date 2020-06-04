@@ -97,6 +97,7 @@ return [
      * Add your middleware name to array -> ['web', 'auth', 'admin']
      * !!!! RESTRICT ACCESS FOR NON ADMIN USERS !!!!
      */
+    //['auth:api'] --> previously set
     'middleware' => ['auth:api'],
 
     /***************************************************************************

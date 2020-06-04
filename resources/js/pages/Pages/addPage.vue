@@ -51,6 +51,7 @@
                              <div class="form-group">
                                <label class="form-control-label" for="pagecontent">Content</label>
                                 //use editor here
+                                <editor :init="{file_picker_callback:GetFileBrowser}" v-model="page.content" id="uuid" plugins="lists link image paste help wordcount" />
                              </div>
                            </div>
                         </div>
@@ -106,6 +107,33 @@
         </div>
         <loader :showLoader="loading"></loader>
         <footer-container></footer-container>
+
+        <div v-if="showModal" class="filemanager">
+          <transition name="modal">
+            <div class="modal-mask">
+              <div class="modal-wrapper">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">File Browser</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" @click="showModal = false">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <file-manager></file-manager>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
+                      <button type="button" class="btn btn-primary">Select</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
+
   </div>
 </template>
 
@@ -115,8 +143,10 @@ import Pagination from '../../components/pagination';
 import FooterContainer from '../../components/footerContainer';
 import loader from '../../components/loader';
 import CommonMixin from '../../mixins/common';
+import tinymce from "tinymce";
+import Editor from '@tinymce/tinymce-vue';
 
-
+//CKEDITOR.replace('editor-id', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
 export default {
   mixins: [CommonMixin],
 	data(){
@@ -131,7 +161,8 @@ export default {
       },
       submitted:false,
       loading:false,
-			//pagedata:{},
+      showModal: false
+      //pagedata:{},
 		}
 	},
 	computed:{
@@ -141,9 +172,10 @@ export default {
 		Pagination,
     'footer-container':FooterContainer,
     loader,
+    'editor': Editor
 	},
 	methods:{
-    ...mapActions(["getPages"]),
+    ...mapActions(["GetPages","AddPage"]),
     CreatePage(e){
       this.loading=true;
       this.submitted = true;
@@ -172,10 +204,35 @@ export default {
             this.handleValidationErrorAdvanced();
           }
       });
+    },
+    GetFileBrowser(callback, value, meta){
+      this.showModal = true;
+      if (meta.filetype == 'file') {
+        callback('mypage.html', {text: 'My text'});
+      }
+
+        // Provide image and alt text for the image dialog
+        if (meta.filetype == 'image') {
+          callback('myimage.jpg', {alt: 'My alt text'});
+        }
+
+        // Provide alternative source and posted for the media dialog
+        if (meta.filetype == 'media') {
+          callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
+        }
     }
 	},
 	created(){
     //
-	}
+	},
+  mounted(){
+    // tinymce.init({
+    //     selector: 'textarea#mytextarea'
+    // });
+  }
 }
 </script>
+
+<style>
+
+</style>

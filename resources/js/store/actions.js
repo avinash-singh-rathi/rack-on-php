@@ -23,6 +23,19 @@ export default {
             });
     },
 
+    //Function to get All pages and search query for pages too
+    AddPage({ commit, getters },data){
+        return new Promise((resolve, reject) => {
+            Vue.http.post(getters.apiUrl+'pages',{params: data}).then(
+                        function (response) {
+                            commit('setPages', response.data)
+                            resolve(response);
+                        }, function (error) {
+                            reject(error);
+                        });
+            });
+    },
+
     //Function to Delete the Page
     DeletePage({commit,getters},id){
       return new Promise((resolve, reject) => {

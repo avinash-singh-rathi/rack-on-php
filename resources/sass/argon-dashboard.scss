@@ -110,3 +110,9 @@ $fa-font-path:"/fonts/fontawesome/webfonts";
 .fm-modal{
   overflow: inherit !important;
 }
+
+.filemanager{
+  .modal-dialog{
+    max-width: 100%;
+  }
+}

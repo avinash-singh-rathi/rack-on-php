@@ -1,5 +1,9 @@
 {
     "/js/main.js": "/js/main.js",
     "/css/app.css": "/css/app.css",
-    "/css/main-app.css": "/css/main-app.css"
+    "/css/main-app.css": "/css/main-app.css",
+    "/js/jquery.tinymce.js": "/js/jquery.tinymce.js",
+    "/js/jquery.tinymce.min.js": "/js/jquery.tinymce.min.js",
+    "/js/tinymce.js": "/js/tinymce.js",
+    "/js/tinymce.min.js": "/js/tinymce.min.js"
 }

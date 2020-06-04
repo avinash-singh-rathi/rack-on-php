@@ -22,7 +22,6 @@ Vue.use(VueResource);
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
 
-
 import FileManager from 'laravel-file-manager'
 import { store } from './store/store'
 
