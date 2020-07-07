@@ -28069,3 +28069,12 @@ readers do not read off random characters that represent icons */
   max-width: 100%;
 }
 
+.avi-th {
+  max-width: 12rem;
+  overflow: hidden;
+}
+
+.swal2-container {
+  z-index: 10000;
+}
+

@@ -125,7 +125,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
-                      <button type="button" class="btn btn-primary">Select</button>
+                      <button type="button" @click="InsertFile" class="btn btn-primary">Select</button>
                     </div>
                   </div>
                 </div>
@@ -161,12 +161,14 @@ export default {
       },
       submitted:false,
       loading:false,
-      showModal: false
+      showModal: false,
+      selectedFile:false,
+      FileMime:''
       //pagedata:{},
 		}
 	},
 	computed:{
-    ...mapGetters(["apiUrl"]),
+    ...mapGetters({apiUrl:"apiUrl",fmselectedItems:"fm/selectedItems"}),
 	},
 	components:{
 		Pagination,
@@ -207,21 +209,67 @@ export default {
     },
     GetFileBrowser(callback, value, meta){
       this.showModal = true;
-      if (meta.filetype == 'file') {
-        callback('mypage.html', {text: 'My text'});
+      this.GetFile().then(response => {
+          if (meta.filetype == 'file') {
+            //callback(response['link'], {text: response['text']});
+            callback(response['link']);
+          }
+
+          // Provide image and alt text for the image dialog
+          if (meta.filetype == 'image') {
+            //callback(response['link'], {alt: response['text']});
+            callback(response['link']);
+          }
+
+          // Provide alternative source and posted for the media dialog
+          if (meta.filetype == 'media') {
+            //callback(response['link'], {source2: response['link2'], poster: response['image']});
+            callback(response['link']);
+          }
+      })
+    },
+    GetFile(){
+      //This Function will check the selected file
+      return new Promise((resolve, reject) => {
+        var delay=200
+        let vmi=this
+        let process = function() {
+          if (vmi.selectedFile == false) {
+	           setTimeout(process, delay);
+	        }else{
+            vmi.showModal=false
+            vmi.selectedFile = false
+            var response={link:'/storage/'+vmi.fmselectedItems[0].path}
+            resolve(response);
+          }
+        }
+        setTimeout(process, delay);
+
+      })
+    },
+    InsertFile(){
+      if(this.fmselectedItems.length < 1){
+        this.$swal.fire(
+            'Warning!',
+            'Select a file!',
+            'info'
+        );
+        return;
       }
 
-        // Provide image and alt text for the image dialog
-        if (meta.filetype == 'image') {
-          callback('myimage.jpg', {alt: 'My alt text'});
-        }
+      if(this.fmselectedItems.length > 1){
+        this.$swal.fire(
+            'Warning!',
+            'Select a single file only!',
+            'info'
+        );
+        return;
+      }
 
-        // Provide alternative source and posted for the media dialog
-        if (meta.filetype == 'media') {
-          callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
-        }
+      this.selectedFile=true
     }
 	},
+
 	created(){
     //
 	},

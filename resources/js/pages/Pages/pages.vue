@@ -37,10 +37,10 @@
 	                </thead>
 	                <tbody>
 	                  <tr v-for="page in pagesdata">
-	                    <th scope="row">
+	                    <th class="avi-th" title="page.title" scope="row">
 	                      {{page.title}}
 	                    </th>
-	                    <td>
+	                    <td class="avi-th" title="page.slug">
 	                      {{page.slug}}
 	                    </td>
 	                    <td>
