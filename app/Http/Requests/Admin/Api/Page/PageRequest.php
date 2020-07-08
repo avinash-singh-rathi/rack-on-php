@@ -27,7 +27,7 @@ class PageRequest extends FormRequest
           return [
               //
               'title' => 'required|max:255',
-              'slug' => 'required|alpha_dash|unique:pages|max:50',
+              //'slug' => 'required|alpha_dash|unique:pages|max:50',
               'status' => 'required|boolean'
           ];
         }

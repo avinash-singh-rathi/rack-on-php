@@ -18,6 +18,7 @@ Credits
 * [Argon Dashboard](https://www.creative-tim.com)
 * [Bouncer](https://github.com/JosephSilber/bouncer) - For the ACL
 * [Laravel File Manager](https://github.com/alexusmai/vue-laravel-file-manager)
+* [Sluggable](https://github.com/spatie/laravel-sluggable)
 
 Sponsors
 ==============
