@@ -22,9 +22,8 @@ Credits
 
 Sponsors
 ==============
-Support us at [Patreon](https://www.patreon.com/bePatron?u=29894458)
+Support us at [Patreon](https://www.patreon.com/avinashsinghrathi?fan_landing=true)
 
 Notice
 =============
 This platform is under development. If you have any suggestions/feedbacks please feel free to let us know.
-https://github.com/alexusmai/laravel-file-manager/blob/master/docs/integration.md#tinymce-4

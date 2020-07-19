@@ -51,6 +51,7 @@
                              <div class="form-group">
                                <label class="form-control-label" for="pagecontent">Content</label>
                                //Use Editor here
+                               <editor v-bind:value.sync="page.content" />
                              </div>
                            </div>
                         </div>
@@ -91,7 +92,7 @@
 
                         <div class="row">
                           <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-primary rounded-0"><i class="fa fa-plus"></i> Save Page</button>
+                            <button type="submit" @keyup.enter="flagsubmit=true" @click="flagsubmit=true" class="btn btn-primary rounded-0"><i class="fa fa-plus"></i> Save Page</button>
                           </div>
                         </div>
 
@@ -115,7 +116,7 @@ import Pagination from '../../components/pagination';
 import FooterContainer from '../../components/footerContainer';
 import loader from '../../components/loader';
 import CommonMixin from '../../mixins/common';
-
+import Editor from '../../components/contentEditor';
 
 export default {
   props:["id"],
@@ -133,6 +134,7 @@ export default {
       },
       submitted:false,
       loading:false,
+      flagsubmit:false,
       //pagedata:{},
 		}
 	},
@@ -143,10 +145,14 @@ export default {
 		Pagination,
     'footer-container':FooterContainer,
     loader,
+    'editor': Editor
 	},
 	methods:{
     ...mapActions(["getPages"]),
     SavePage(e){
+      if(!this.flagsubmit){
+        return;
+      }
       this.loading=true;
       this.submitted = true;
       this.$validator.validate().then(valid => {

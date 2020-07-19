@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <editor :init="initialize" v-model="content" @onKeyUp="updateValue" @onChange="updateValue"/>
+    <editor :init="initialize" :initial-value="value" v-model="content" @onKeyUp="updateValue" @onChange="updateValue"/>
     <loader :showLoader="loading"></loader>
     <div v-if="showModal" class="filemanager">
       <transition name="modal">
@@ -47,6 +47,12 @@ export default {
       selectedFile:false,
       loading:false,
       FileMime:'',
+      Filetypes:{
+        image:['jpg','jpeg','png','gif','svg','bmp','ico'],
+        media:['aif','cda','mid','midi','mp3','mpa','ogg','wav','wma','wpl','3g2','3gp','avi','flv','h264','m4v','mkv','mov','mp4','mpg','mpeg','rm','swf','vob',
+        'wmv','webm','mp2','mpe','mpv','ogg','m4p','m4v','qt','avchd'
+        ]
+      },
       initialize:{
         file_picker_callback:this.GetFileBrowser,
         height: 500,
@@ -133,10 +139,31 @@ export default {
         return;
       }
 
-      //Need to work upon the file type check also
-      
+      //Need to check file type related to Mimetype
+      if(this.FileMime == 'image' && !this.Filetypes['image'].includes(this.fmselectedItems[0]['extension'].toLowerCase())){
+        this.$swal.fire(
+            'Warning!',
+            'Select an image file only!',
+            'info'
+        );
+        return;
+      }
+
+      if(this.FileMime == 'media' && !this.Filetypes['image'].includes(this.fmselectedItems[0]['extension'].toLowerCase())){
+        this.$swal.fire(
+            'Warning!',
+            'Select a media file only!',
+            'info'
+        );
+        return;
+      }
+
+
       this.selectedFile=true
     }
+  },
+  mounted(){
+    this.content=this.value
   }
 }
 </script>

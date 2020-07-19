@@ -92,7 +92,7 @@
 
                         <div class="row">
                           <div class="col-md-12 text-right">
-                            <button type="submit" class="btn btn-primary rounded-0"><i class="fa fa-plus"></i> Save Page</button>
+                            <button type="submit" @keyup.enter="flagsubmit=true" @click="flagsubmit=true" class="btn btn-primary rounded-0"><i class="fa fa-plus"></i> Save Page</button>
                           </div>
                         </div>
 
@@ -112,7 +112,6 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Pagination from '../../components/pagination';
 import FooterContainer from '../../components/footerContainer';
 import loader from '../../components/loader';
 import CommonMixin from '../../mixins/common';
@@ -133,9 +132,7 @@ export default {
       },
       submitted:false,
       loading:false,
-      showModal: false,
-      selectedFile:false,
-      FileMime:''
+      flagsubmit:false,
       //pagedata:{},
 		}
 	},
@@ -143,14 +140,16 @@ export default {
     ...mapGetters({apiUrl:"apiUrl",fmselectedItems:"fm/selectedItems"}),
 	},
 	components:{
-		Pagination,
-    'footer-container':FooterContainer,
+		'footer-container':FooterContainer,
     loader,
     'editor': Editor
 	},
 	methods:{
     ...mapActions(["GetPages","AddPage"]),
     CreatePage(e){
+      if(!this.flagsubmit){
+        return false
+      }
       this.loading=true;
       this.submitted = true;
       this.$validator.validate().then(valid => {

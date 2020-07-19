@@ -84,12 +84,14 @@
 	          </div>
 	        </div>
 	      </div>
+				<loader :showLoader="loading"></loader>
 				<footer-container></footer-container>
 	</div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import loader from '../../components/loader';
 import Pagination from '../../components/pagination';
 import FooterContainer from '../../components/footerContainer';
 export default {
@@ -97,6 +99,7 @@ export default {
 		return {
 			//pagedata:{},
 			search:'',
+			loading:false,
 		}
 	},
 	computed:{
@@ -108,6 +111,7 @@ export default {
 	components:{
 		Pagination,
 		'footer-container':FooterContainer,
+		loader,
 	},
 	filters: {
 	  checkStatus: function (value) {
@@ -119,7 +123,10 @@ export default {
     ...mapActions(["GetPages","DeletePage"]),
 		GoPages(pagenumber=null){
 			//Action will go here
-			this.GetPages({search:this.search,page:pagenumber});
+			this.loading=true;
+			this.GetPages({search:this.search,page:pagenumber}).then(response => {
+				this.loading=false
+			});
 		},
 		async DeleteIt(id){
 				this.$swal.fire({
